@@ -9,9 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class ListController extends Controller
 {
-    private const SORTABLE_COLUMNS = ['name', 'email', 'rate', 'created_at'];
-    private const SORTABLE_DIRECTIONS = ['asc', 'desc'];
-
     /**
      * @param Request $request
      * @return View
@@ -23,8 +20,8 @@ final class ListController extends Controller
 
         // Invalid sort
         abort_if(
-            in_array($sortColumn, self::SORTABLE_COLUMNS) === false ||
-            in_array($sortDirection, self::SORTABLE_DIRECTIONS) === false,
+            in_array($sortColumn, Feedback::SORTABLE_COLUMNS) === false ||
+            in_array($sortDirection, Feedback::SORTABLE_DIRECTIONS) === false,
             404
         );
 

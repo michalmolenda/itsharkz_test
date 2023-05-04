@@ -9,6 +9,9 @@ class Feedback extends Model
 {
     use HasFactory;
 
+    public const SORTABLE_COLUMNS = ['name', 'email', 'rate', 'created_at'];
+    public const SORTABLE_DIRECTIONS = ['asc', 'desc'];
+
     /**
      * The attributes that are mass assignable.
      *
