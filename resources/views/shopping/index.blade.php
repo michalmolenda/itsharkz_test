@@ -88,8 +88,10 @@
                 Generate : function() {
                     let html = '<ul>';
 
-                    for(let rowId in ShoppingList.__shoppingList) {
-                        let row = ShoppingList.__shoppingList[rowId];
+                    let __shoppingList = ShoppingList.__shoppingList.sort((secondItem, firstItem) => firstItem.quantity - secondItem.quantity);
+
+                    for(let rowId in __shoppingList) {
+                        let row = __shoppingList[rowId];
 
                         if(row !== null) {
                             html += '<li>' +
