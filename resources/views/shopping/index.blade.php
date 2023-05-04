@@ -22,8 +22,8 @@
             __shoppingList : [],
 
             // Triggers
-            Initialize : function(__shoppingList) {
-                ShoppingList.__shoppingList = __shoppingList;
+            Initialize : function() {
+                ShoppingList.__shoppingList = JSON.parse(localStorage.getItem("shoppingList"));
 
                 ShoppingList.List.Generate();
 
@@ -75,6 +75,9 @@
                     html += '</ul>';
 
                     document.getElementById('shoppingList').innerHTML = html;
+
+                    // Save in local Storage
+                    localStorage.setItem("shoppingList", JSON.stringify(ShoppingList.__shoppingList));
                 },
 
                 Quantity : {
@@ -113,6 +116,6 @@
         };
 
         // Initialize with some data
-        ShoppingList.Initialize([{ name: "Banana", quantity: 15 }, { name: "Egg", quantity: 13 }, { name: "Apple", quantity: 13 }]);
+        ShoppingList.Initialize();
     </script>
 @endsection
