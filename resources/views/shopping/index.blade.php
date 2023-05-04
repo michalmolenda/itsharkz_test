@@ -23,6 +23,8 @@
 
             // Triggers
             Initialize : function() {
+                console.log(localStorage.getItem("shoppingList"));
+
                 ShoppingList.__shoppingList = JSON.parse(localStorage.getItem("shoppingList"));
 
                 ShoppingList.List.Generate();
@@ -63,13 +65,15 @@
                     for(let rowId in ShoppingList.__shoppingList) {
                         let row = ShoppingList.__shoppingList[rowId];
 
-                        html += '<li>' +
+                        if(row !== null) {
+                            html += '<li>' +
                                 '<span>' + row.name + '</span>' +
                                 ' - ' +
                                 '<span>quantity: ' + row.quantity + '</span>' +
                                 '<button onclick="ShoppingList.List.Quantity.Increase(' + rowId + ');">+</button>' +
                                 '<button onclick="ShoppingList.List.Quantity.Decrease(' + rowId + ');">-</button>' +
-                            '</li>';
+                                '</li>';
+                        }
                     }
 
                     html += '</ul>';
