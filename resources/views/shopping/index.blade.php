@@ -107,6 +107,11 @@
                                         --ShoppingList.__shoppingList[rowId].quantity;
                                     } else {
                                         delete ShoppingList.__shoppingList[rowId];
+
+                                        // Remove null rows
+                                        ShoppingList.__shoppingList = ShoppingList.__shoppingList.filter(function (el) {
+                                            return el != null;
+                                        });
                                     }
 
                                     break;
