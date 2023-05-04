@@ -36,6 +36,11 @@
                         document.getElementById('itemName').style.borderColor = '#dee2e6';
                         document.getElementById('itemName').value = '';
 
+                        // Remove non-ascii characters
+                        itemName = itemName.normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, '')
+                            .replace(/(^-+|-+$)/g, '');
+
                         ShoppingList.List.Create(itemName);
                     }
                 }
