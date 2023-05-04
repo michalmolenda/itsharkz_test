@@ -16,14 +16,16 @@ final class StoreController extends Controller
      */
     public function __invoke(FeedbackStoreRequest $feedbackStoreRequest): RedirectResponse
     {
-        $validated = $feedbackStoreRequest->validated();
-        $comment = $feedbackStoreRequest->get('comment');
         $file = $feedbackStoreRequest->files->get('file');
+        $data = array_merge(
+            $feedbackStoreRequest->validated(),
+            [
+                'comment' => $feedbackStoreRequest->get('comment', '')
+            ]
+        );
 
         $model = new Feedback();
-        $model->fill($validated);
-
-        $model->comment = $comment ?? '';
+        $model->fill($data);
 
         if($file !== null) {
             $fileName = $file->getClientOriginalName();
