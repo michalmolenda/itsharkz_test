@@ -51,11 +51,37 @@
             List : {
                 // Create list
                 Create : function(name) {
-                    ShoppingList.__shoppingList.push({
-                        'name': name,
-                        'quantity': 1
-                    });
+                    let rowId = ShoppingList.List.FindByName(name);
+
+                    if(rowId !== null) {
+                        // Increase if exists
+
+                        ShoppingList.List.Quantity.Increase(rowId);
+                    } else {
+                        // Create if not
+
+                        ShoppingList.__shoppingList.push({
+                            'name': name,
+                            'quantity': 1
+                        });
+                    }
+
                     ShoppingList.List.Generate();
+                },
+
+                // Find row by name
+                FindByName : function(name) {
+                    for(let rowId in ShoppingList.__shoppingList) {
+                        let row = ShoppingList.__shoppingList[rowId];
+
+                        if(row !== null) {
+                            if(name === row.name) {
+                                return rowId;
+                            }
+                        }
+                    }
+
+                    return null;
                 },
 
                 // Generate HTML code
