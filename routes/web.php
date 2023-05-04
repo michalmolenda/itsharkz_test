@@ -17,3 +17,4 @@ Route::prefix('feedback')->group(function () {
 });
 
 // Shopping list
+Route::get('/shopping', function() { return view('shopping.index'); })->name('shopping.index');

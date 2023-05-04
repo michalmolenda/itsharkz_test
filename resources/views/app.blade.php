@@ -12,12 +12,14 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col col-lg-8">
-            @yield('content')
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-8">
+                @yield('content')
+            </div>
         </div>
     </div>
-</div>
+
+    @yield('scripts')
 </body>
 </html>
